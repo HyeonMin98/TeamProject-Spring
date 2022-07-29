@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+
+	<insert id="createUser" parameterType="user">
+		INSERT INTO CGV_USER VALUES(#{id},#{name},#{pwd},#{birth},#{email},#{tel})
+	</insert>
+
+	<select id="getUserById" parameterType="String" resultType="user">
+		select * from CGV_USER where id=#{id}
+	</select>
+	
+	<select id="getUserByEmail" parameterType="String" resultType="user">
+		select * from CGV_USER where email=#{email}
+	</select>
+	
+	<select id="getUserByTel" parameterType="String" resultType="user">
+		select * from CGV_USER where tel=#{tel}
+	</select>
+
+	<select id="checkLogin" parameterType="user" resultType="user">
+		select * from CGV_USER where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<select id="user_list" resultType="user">
+		select * from CGV_USER
+	</select>
+</mapper>
