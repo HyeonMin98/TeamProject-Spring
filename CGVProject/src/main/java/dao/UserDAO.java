@@ -18,17 +18,17 @@ public class UserDAO {
 		UserVO vo = sqlSession.selectOne("c.getUserById", id);
 		return vo;
 	}
-	
+
 	public UserVO selectEmail(String email) {
 		UserVO vo = sqlSession.selectOne("c.getUserByEmail", email);
 		return vo;
 	}
-	
+
 	public UserVO selectTel(String tel) {
 		UserVO vo = sqlSession.selectOne("c.getUserByTel", tel);
 		return vo;
 	}
-	
+
 	public int insert(UserVO vo) {
 		int res = sqlSession.insert("c.createUser", vo);
 		return res;
@@ -43,10 +43,10 @@ public class UserDAO {
 		List<UserVO> list = sqlSession.selectList("c.user_list");
 		return list;
 	}
-	
-	
-	public List<UserVO> selectList(){
-	List<UserVO>list = sqlSession.selectList("c.user_list");
-	return list; }
-	
+
+	public List<UserVO> selectList() {
+		List<UserVO> list = sqlSession.selectList("c.user_list");
+		return list;
+	}
+
 }

@@ -5,7 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="c">
 
 	<insert id="createUser" parameterType="user">
-		INSERT INTO CGV_USER VALUES(#{id},#{name},#{pwd},#{birth},#{email},#{tel})
+		INSERT INTO CGV_USER VALUES(
+			#{id},
+			#{name},
+			#{pwd},
+			#{birth},
+			#{email},
+			#{tel}
+		)
 	</insert>
 
 	<select id="getUserById" parameterType="String" resultType="user">

@@ -22,7 +22,7 @@ public class SignUpController {
 
 	@Autowired
 	HttpServletRequest request;
-	
+
 	@Autowired
 	HttpSession session;
 
@@ -45,14 +45,13 @@ public class SignUpController {
 
 		return VIEW_PATH + "signup.jsp";
 	}
-	
-	//로그인 폼으로 이동
+
+	// 로그인 폼으로 이동
 	@RequestMapping("/login_form.do")
 	public String selectList2() {
 
 		return VIEW_PATH + "login.jsp";
 	}
-	
 
 	@RequestMapping("/join.do")
 	public String join(UserVO vo) {
@@ -106,47 +105,48 @@ public class SignUpController {
 		}
 		return result;
 	}
-	
-	//로그인
+
+	// 로그인
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public String checkId(UserVO vo, HttpServletRequest response) throws IOException{
+	public String checkId(UserVO vo, HttpServletRequest response) throws IOException {
 		logger.debug(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + vo);
 		UserVO res = user_dao.checkLogin(vo);
-		
+
 		String param = "";
 		String resultStr = "";
-		
-		//vo가 null인 경우 id자체가 db에 존재하지 않는다는 의미
-		if(res==null) {
-			param="no_id";
+
+		// vo가 null인 경우 id자체가 db에 존재하지 않는다는 의미
+		if (res == null) {
+			param = "no_id";
 			/*
 			 * resultStr = String.format("[{'param':'%s'}]", param);
 			 * response.getWriter().print(resultStr);
 			 */
-			//return res;
-		}else if(!res.getPwd().equals(vo.getPwd())) {
-			param="no_pwd";
-			
-			//return res;
-		}else {		
-		session.setMaxInactiveInterval(3600);
-		session.setAttribute("res", res);
-		param="clear";
-		
+			// return res;
+		} else if (!res.getPwd().equals(vo.getPwd())) {
+			param = "no_pwd";
+
+			// return res;
+		} else {
+			session.setMaxInactiveInterval(3600);
+			session.setAttribute("res", res);
+			param = "clear";
+
 		}
 		return param;
 	}
-	
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping("/logout.do")
-	public String service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//static 객체를 만들어도 이미 만들어진 객체랑 주소를 공유한다.
+	public String service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// static 객체를 만들어도 이미 만들어진 객체랑 주소를 공유한다.
 		HttpSession session = request.getSession();
 		session.removeAttribute("res");
-		
+
 		return VIEW_PATH + "login.jsp";
 	}
-	
+
 }

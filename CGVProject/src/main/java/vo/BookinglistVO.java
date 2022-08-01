@@ -1,7 +1,7 @@
 package vo;
 
 public class BookinglistVO {
-	private String movie,loc,theater,day,people,seat;
+	private String movie, loc, theater, day, people, seat;
 
 	public String getMovie() {
 		return movie;
@@ -50,8 +50,5 @@ public class BookinglistVO {
 	public void setSeat(String seat) {
 		this.seat = seat;
 	}
-	
-	
-	
-	
+
 }
